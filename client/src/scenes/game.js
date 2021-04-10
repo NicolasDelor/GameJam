@@ -2,6 +2,8 @@ import io from 'socket.io-client';
 import Card from '../helpers/card';
 import Dealer from "../helpers/dealer";
 import Zone from '../helpers/zone';
+import Round from "../helpers/round";
+import Player from "../helpers/player";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -26,6 +28,15 @@ export default class Game extends Phaser.Scene {
         this.outline = this.zone.renderOutline(this.dropZone);
 
         this.dealer = new Dealer(this);
+        this.round = new Round(this);
+
+
+        let playerA = new Player(this);
+        let playerB = new Player(this);
+
+        playerA.render(20, 20);
+        playerB.render(1200, 20);
+
 
         let self = this;
 
@@ -39,10 +50,11 @@ export default class Game extends Phaser.Scene {
             self.isPlayerA = true;
         })
 
-        this.socket.on('dealCards', function () {
-            self.dealer.dealCards();
+        this.socket.on('startGame', function () {
+            self.dealer.startGame();
             self.dealText.disableInteractive();
         })
+
 
         this.socket.on('cardPlayed', function (gameObject, isPlayerA) {
             if (isPlayerA !== self.isPlayerA) {
@@ -54,10 +66,10 @@ export default class Game extends Phaser.Scene {
             }
         })
 
-        this.dealText = this.add.text(75, 350, ['DEAL CARDS']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff').setInteractive();
+        this.dealText = this.add.text(75, 350, ['Join Game']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff').setInteractive();
 
         this.dealText.on('pointerdown', function () {
-            self.socket.emit("dealCards");
+            self.socket.emit("startGame");
         })
 
         this.dealText.on('pointerover', function () {
@@ -74,15 +86,14 @@ export default class Game extends Phaser.Scene {
         })
 
         this.input.on('dragstart', function (pointer, gameObject) {
-            gameObject.setTint(0xff69b4);
             self.children.bringToTop(gameObject);
         })
 
         this.input.on('dragend', function (pointer, gameObject, dropped) {
-            gameObject.setTint();
             if (!dropped) {
                 gameObject.x = gameObject.input.dragStartX;
                 gameObject.y = gameObject.input.dragStartY;
+                console.log("Vous avez déjà joué")
             }
         })
 
@@ -90,8 +101,20 @@ export default class Game extends Phaser.Scene {
             dropZone.data.values.cards++;
             gameObject.x = (dropZone.x - 350) + (dropZone.data.values.cards * 50);
             gameObject.y = dropZone.y;
-            gameObject.disableInteractive();
             self.socket.emit('cardPlayed', gameObject, self.isPlayerA);
+            console.log("Joueur A : " + self.isPlayerA)
+            if (dropZone.data.values.cards > 0 && self.isPlayerA) {
+                self.dropZone.disableInteractive();
+                console.log("JA a joué");
+            }
+            if (dropZone.data.values.cards > 0 && !self.isPlayerA) {
+                self.dropZone.disableInteractive();
+                console.log("JB a joué")
+            }
+            if (dropZone.data.values.cards === 2) {
+                self.round.startRound();
+            }
+            console.log("Nombre de cartes en jeu : " + dropZone.data.values.cards);
         })
     }
 
