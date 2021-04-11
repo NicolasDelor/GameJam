@@ -19,7 +19,7 @@ export default class Dealer extends Card {
 
             let deck = [];
 
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 1; i++) {
                 let playerCard = new Card(scene);
                 playerCard.render(475 + (i * 100), 650, playerSprite);
 
