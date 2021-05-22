@@ -13,7 +13,21 @@ import FeindrePourRenverser from "../helpers/cards/FeindrePourRenverser";
 import FrappeBasique from "../helpers/cards/FrappeBasique";
 import FrapperPourTuer from "../helpers/cards/FrapperPourTuer";
 import FuiteTactique from "../helpers/cards/FuiteTactique";
-
+import Balayage from "../helpers/cards/Balayage";
+import BriseCrane from "../helpers/cards/BriseCrane";
+import BriserSesFers from "../helpers/cards/BriserSesfers";
+import MaitriserLaBete from "../helpers/cards/MaitriserLaBete";
+import SeDebattre from "../helpers/cards/SeDébattre";
+import TenirSaPosition from "../helpers/cards/TenirSaPosition";
+import ViserLaOuCaFaitMal from "../helpers/cards/ViserLaOuCaFaitMal"
+import ChangementDeStrategie from "../helpers/cards/ChangementDeStrategie";
+import Planifier from "../helpers/cards/Planifier";
+import PrendreDeLaDistance from "../helpers/cards/PrendreDeLaDistance";
+import ReprendreSonSouffle from "../helpers/cards/ReprendreSonSouffle";
+import RepriseDAppuis from "../helpers/cards/RepriseDAppuis";
+import SeRelever from "../helpers/cards/SeRelever";
+import Soumission from "../helpers/cards/Soumission";
+import Trebucher from "../helpers/cards/Trébucher";
 
 let hpA;
 let hpAText;
@@ -42,6 +56,10 @@ export default class Game extends Phaser.Scene {
         this.load.image('bleu', 'src/assets/tete_bleu.png');
         this.load.image('vert', 'src/assets/tete_verte.png');
         this.load.image('front', 'src/assets/carte_front.png');
+        this.load.image('')
+
+
+
         this.load.audio('poupoule', 'src/assets/Poupoule.wav');
         this.load.audio('loop', 'src/assets/Poupoule loop.wav');
     }
@@ -95,12 +113,12 @@ export default class Game extends Phaser.Scene {
         var poupoule = this.sound.add('poupoule');
         var poupouleLoop = this.sound.add('loop');
 
-        poupoule.on('complete', function () {
+        /* poupoule.on('complete', function () {
             poupouleLoop.play();
             poupouleLoop.add('loop');
-        })
+        }) */
         
-        poupoule.play();
+        //poupoule.play();
 
         this.socket.on('startGame', function () {
 
@@ -114,43 +132,101 @@ export default class Game extends Phaser.Scene {
                 opponentSprite = 'cyanCardBack';
             }
 
-            let deck = [];
+            let deck = [1,2,3,4,5,6,7,8,9,75];
             var ix = 0;
             var iy = 0;
 
+            /* for (let elem of this.deck) {
+                console.log(elem)
+                }; */
+        
+
+
             let card1 = new AttenteSalvatrice(self);
-            card1.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card1.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
+            console.log("attente salvatrice créée")
             let card2 = new UppercutVengeur(self);
-            card2.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card2.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
             let card3 = new BriserLIntimité(self);
-            card3.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card3.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
             let card4 = new Crachat(self);
-            card4.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card4.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
             let card5 = new DécollageImminent(self);
-            card5.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card5.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix = 0;
 
             iy++;
             let card6 = new Engagement(self);
-            card6.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card6.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
             let card7 = new FeindrePourRenverser(self);
-            card7.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card7.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
             let card8 = new FrappeBasique(self);
-            card8.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card8.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
             let card9 = new FrapperPourTuer(self);
-            card9.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card9.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix++;
             let card10 = new FuiteTactique(self);
-            card10.render(200 + (ix * 375), 850 + (iy * 900), playerSprite);
+            card10.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
             ix = 0;
 
+            iy++;
+            let card11 = new Balayage(self);
+            card11.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            console.log("une carte est créée");
+            ix++;
+            let card12 = new BriseCrane(self);
+            card12.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card13 = new BriserSesFers(self);
+            card13.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card14 = new MaitriserLaBete(self);
+            card14.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card15 = new SeDebattre(self);
+            card15.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix = 0;
+
+            iy++;
+            let card16 = new TenirSaPosition(self);
+            card16.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card17 = new ViserLaOuCaFaitMal(self);
+            card17.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card18 = new ChangementDeStrategie(self);
+            card18.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card19 = new Planifier(self);
+            card19.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card20 = new PrendreDeLaDistance(self);
+            card20.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix = 0;
+
+            iy++;   
+            let card21 = new ReprendreSonSouffle(self);
+            card21.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card22 = new RepriseDAppuis(self);
+            card22.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card23 = new SeRelever(self);
+            card23.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card24 = new Soumission(self);
+            card24.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix++;
+            let card25 = new Trebucher(self);
+            card25.render(200 + (ix * 375), 850 + (iy * 450), playerSprite);
+            ix = 0;
 
             self.dealText.disableInteractive();
         })
@@ -261,6 +337,9 @@ export default class Game extends Phaser.Scene {
                             staminaB = 20
                         }
                         staminaBText.setText("Stamina : " + staminaB);
+                        let animationU = this.add.image(1500, 300, '').disableInteractive().setScale(0.2, 0.2);
+
+
                     }
                     // JB
                     let stockStaminaB = staminaB;
@@ -366,7 +445,10 @@ export default class Game extends Phaser.Scene {
                 usedCard = null;
                 self.socket.emit("startGame");
                 console.log("dataplayer " + usedCard);
-                self.dropZone.setInteractive();
+                image.destroy();
+                this.zone = new Zone(this);
+                this.dropZone = this.zone.renderZone();
+                this.outline = this.zone.renderOutline(this.dropZone);
             }
         })
 

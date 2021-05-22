@@ -12,14 +12,15 @@ export default class FrapperPourTuer {
         const mindSetUser = [];
         const stanceUser = [];
 
-        const damageOpponent = 13;
-        const damamgeStaminaOpponent = 0;
-        const forceStanceOpponent = [];
+        const hpOpponent = 13;
+        const staminaOpponent = 0;
+        const stanceOpponent = [];
         const mindSetOpponent = [];
 
         let animationUser = 'attenteSalvatriceUser';
         let animationOpponent = 'attenteSalvatriceOpponent';
         let son = "attente";
+
 
 
         this.name = name;

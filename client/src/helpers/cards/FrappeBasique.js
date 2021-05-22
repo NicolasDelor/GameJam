@@ -14,8 +14,8 @@ export default class FrappeBasique {
         const staminaUser = -6;
         const hpOpponent = 0;
         const staminaOpponent = 0;
-        let animationUser = 'attenteSalvatriceUser';
-        let animationOpponent = 'attenteSalvatriceOpponent';
+        let animationUser = 'frappeBasiqueUser';
+        let animationOpponent = 'frappeBasiqueOpponent';
         let son = "attente";
 
 

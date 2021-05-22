@@ -12,9 +12,9 @@ export default class SeRelever {
         const mindSetUser = [];
         const stanceUser = [0,1,0,0,0,0,0,0,0];
 
-        const damageOpponent = 13;
-        const damamgeStaminaOpponent = 0;
-        const forceStanceOpponent = [1,0,0,0,0,0,0,0,0];
+        const hpOpponent = 0;
+        const staminaOpponent = 0;
+        const stanceOpponent = [1,0,0,0,0,0,0,0,0];
         const mindSetOpponent = [];
         let animationUser = 'attenteSalvatriceUser';
         let animationOpponent = 'attenteSalvatriceOpponent';
@@ -41,10 +41,10 @@ export default class SeRelever {
         this.render = (x, y ,sprite) => {
 
             const bg = scene.add.image(0, 0, sprite).setScale(0.65, 0.65);
-            const text = scene.add.text(-150, -200, name).setFontSize(40).setFontFamily('TrebuchetMS').setColor('#0000ff');
-            const desc = scene.add.text(-150, 50, description).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
-            const stau= scene.add.text(-150, -100, "STA : " + staminaUser).setFontSize(25).setFontFamily('Trebuchet MS').setColor('#00ffff');
-            const vit = scene.add.text(80, -100, "VIT : " + speed).setFontSize(25).setFontFamily('Trebuchet MS').setColor('#00ffff');
+            const text = scene.add.text(-150, -200, this.name).setFontSize(40).setFontFamily('TrebuchetMS').setColor('#0000ff');
+            const desc = scene.add.text(-150, 50, this.description).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
+            const stau= scene.add.text(-150, -100, "STA : " + this.staminaUser).setFontSize(25).setFontFamily('Trebuchet MS').setColor('#00ffff');
+            const vit = scene.add.text(80, -100, "VIT : " + this.speed).setFontSize(25).setFontFamily('Trebuchet MS').setColor('#00ffff');
 
             const card = scene.add.container(x, y, [bg, text,desc,stau,vit]);
             card.setData ({name : this.name , id : this.id , speed : this.speed, description : this.description, descriptionBAX : this.descriptionBAX, mindSetUser : this.mindSetUser , stanceUser : this.stanceUser, mindSetOpponent : this.mindSetOpponent, stanceOpponent : this.mindSetOpponent , hpUser : this.hpUser, staminaUser : this.staminaUser, hpOpponent : this.hpOpponent, staminaOpponent : this.staminaOpponent , animationUser : this.animationUser, animationOpponent : this.animationOpponent, son : this.son});
